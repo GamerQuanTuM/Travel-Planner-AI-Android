@@ -1,3 +1,4 @@
+import React from "react"
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -30,6 +31,8 @@ export const TripProvider = ({ children }: { children: ReactNode }) => {
     const [loading, setLoading] = useState(false);
 
     const { user } = useAuthContext()
+
+    console.log(budget)
 
     const handleGenerateTrip = async () => {
         try {

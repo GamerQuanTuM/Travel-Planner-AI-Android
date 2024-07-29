@@ -2,34 +2,30 @@ import { View, Text, TouchableOpacity, ToastAndroid } from 'react-native'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { Container } from '~/components/Container'
-import useTripContext, { Person as PersonType } from '~/context/TripContext'
+import useTripContext, { Budget as BudgetType } from '~/context/TripContext'
 
 enum Active {
-    ME = "Me",
-    COUPLE = "Couple",
-    FAMILY = "Family",
-    FRIENDS = "Friends"
+    CHEAP = "Cheap",
+    LUXURY = "Luxury",
+    MODERATE = "Moderate",
 }
 
-const Person = () => {
+const Budget = () => {
     const router = useRouter()
     const [active, setActive] = useState<Active | null>(null)
     const [error, setError] = useState<string | null>(null)
 
-    const { setPerson } = useTripContext()
+    const { setPerson,setBudget } = useTripContext()
 
     const OPTIONS = {
-        Me: {
-            icon: '✈️', heading: 'Just Me', subHeading: 'A sole traveler in exploration'
+        Cheap: {
+           icon:'💵', heading:'Cheap', subHeading:'Stay conscious of costs'
         },
-        Couple: {
-            icon: '🥂', heading: 'A Couple', subHeading: 'Two travelers in tandem'
+        Modearte: {
+          icon:'💰', heading:'Moderate', subHeading:'Keep cost on the average side'
         },
-        Friends: {
-            icon: '🏡', heading: 'Family', subHeading: 'A group of fun loving adventure'
-        },
-        Family: {
-            icon: '⛵', heading: 'Friends', subHeading: 'A bunch of thrill-seekers'
+        Luxury: {
+            icon:'💸', heading:'Luxury', subHeading:'Dont worry about cost' 
         }
     }
 
@@ -38,19 +34,19 @@ const Person = () => {
             setError('Please select an option before continuing.')
             ToastAndroid.show('Please select an option before continuing.', ToastAndroid.SHORT);
         } else {
-            setPerson(active as PersonType)
-            router.push("/(create-trip)/calendar")
+            setBudget(active as BudgetType)
+            router.push("/(create-trip)/review")
         }
     }
 
     return (
-        <Container navigate='/(create-trip)'>
+        <Container navigate='/(create-trip)/calendar'>
             <View className='w-[95%] mx-auto'>
                 <View>
-                    <Text className='font-bold text-3xl'>Who's Travelling</Text>
+                    <Text className='font-bold text-3xl'>Budget</Text>
                 </View>
                 <View className='mt-5'>
-                    <Text className='font-bold text-xl'>Choose your travellers</Text>
+                    <Text className='font-bold text-xl'>Choose spending habits for your trip</Text>
                 </View>
 
                 {Object.keys(OPTIONS).map((key) => {
@@ -85,4 +81,4 @@ const Person = () => {
     )
 }
 
-export default Person
+export default Budget
