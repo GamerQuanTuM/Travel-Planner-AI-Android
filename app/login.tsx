@@ -31,7 +31,7 @@ const Login = () => {
                 </View>
             </View>
             <View className='space-y-5 mt-10'>
-                <Link href={"/(tabs)"} asChild replace>
+                <Link href={"/(drawer)"} asChild replace>
                     <TouchableOpacity className='rounded-full w-full h-14 bg-black flex items-center justify-center mt-4' onPress={() => login({ email, password })}>
                         <Text className='text-white font-normal text-base'>Login</Text>
                     </TouchableOpacity>

@@ -8,7 +8,7 @@ const Landing = () => {
     const router = useRouter()
     const { user } = useAuthContext();
 
-    if(user) return <Redirect href={"/(tabs)"}/>
+    if(user) return <Redirect href={"/(drawer)"}/>
     return (
         <View>
             <Image source={require("../assets/landing.jpeg")} className='w-full h-[400px]' />
