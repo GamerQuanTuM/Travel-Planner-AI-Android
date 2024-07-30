@@ -29,7 +29,7 @@ const FlightRecommendation = ({ trip }: { trip: Trip }) => {
                             <Text className='text-xl font-medium px-1'>{flight?.airline}</Text>
                             <Text className='text-base text-gray-500 px-1'>🛫 {flight?.departureAirport}</Text>
                             <Text className='text-base text-gray-500 px-1'>🛬 {flight?.arrivalAirport}</Text>
-                            <Text className='text-base text-gray-500 px-1'>💰 {flight?.price}</Text>
+                            <Text className='text-base text-gray-500 px-1'>💰 ${flight?.price}</Text>
                         </View>
                     </View>
                 ))}

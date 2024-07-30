@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, ToastAndroid } from 'react-native'
-// import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { Container } from '~/components/Container';
 import { useRouter } from 'expo-router';
 import useTripContext from '~/context/TripContext';
@@ -24,7 +24,7 @@ const Places = () => {
                 <View className='flex flex-col gap-y-10'>
                     <View className='gap-y-3'>
                         <Text className='font-bold text-2xl'>Choose your travel of destination</Text>
-                        {/* <GooglePlacesAutocomplete
+                        <GooglePlacesAutocomplete
                             placeholder='Search'
                             
                             styles={{
@@ -50,24 +50,24 @@ const Places = () => {
                                 key: process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY,
                                 language: 'en',
                             }}
-                        /> */}
+                        />
 
-                        <TextInput onChangeText={(place) => setPlace(place as string)} textContentType='emailAddress' className='border w-full h-12 rounded-xl px-5 text-xl' />
+                        {/* <TextInput onChangeText={(place) => setPlace(place as string)} textContentType='emailAddress' className='border w-full h-12 rounded-xl px-5 text-xl' /> */}
                     </View>
                     <View className='gap-y-3'>
                         <Text className='font-bold text-2xl'>Choose your travel of origin</Text>
-                        {/* <GooglePlacesAutocomplete
+                        <GooglePlacesAutocomplete
                             placeholder='Search'
                             onPress={(data, details = null) => {
                                 console.log(data, details);
                             }}
                             query={{
-                                key: process.env.GOOGLE_PLACES_API_KEY,
+                                key: process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY,
                                 language: 'en',
                             }}
-                        /> */}
-
-                        <TextInput onChangeText={(place) => setBoarding(place as string)} textContentType='emailAddress' className='border w-full h-12 rounded-xl px-5 text-xl' />
+                        />
+{/* 
+                        <TextInput onChangeText={(place) => setBoarding(place as string)} textContentType='emailAddress' className='border w-full h-12 rounded-xl px-5 text-xl' /> */}
                     </View>
                 </View>
 

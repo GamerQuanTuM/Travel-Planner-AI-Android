@@ -1,5 +1,5 @@
-import { ScrollView, Text, BackHandler, Image, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import { ScrollView, Text, BackHandler, Image, View } from 'react-native'
 import { useLocalSearchParams, useNavigation, useRouter, } from 'expo-router';
 import axiosInstance from '~/lib/axiosInstance';
 import LoadingTrip from '~/components/LoadingTrip';
@@ -54,10 +54,10 @@ const Trip = () => {
     if (loading) return <LoadingTrip />
     return (
         <ScrollView>
-            <Image className='w-full mx-auto h-[300px]' source={{
+            <Image className='w-full mx-auto h-[400px]' source={{
                 uri: travelDetails?.cover as string
             }} />
-            <ScrollView className='rounded-t-3xl h-full bg-white -mt-[20px] pb-20'>
+            <ScrollView className='rounded-t-3xl h-full bg-white -mt-[20px]'>
                 <View className='mt-5 mx-5 space-y-2'>
                     <Text className='text-3xl font-bold'>{travelDetails?.destination}</Text>
                     <Text className='text-lg text-gray-500 font-bold'>🚇&nbsp; {travelDetails?.duration} days</Text>

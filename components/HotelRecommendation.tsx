@@ -28,7 +28,7 @@ const HotelRecommendation = ({ trip }: { trip: Trip }) => {
                             uri: hotel?.hotelImageUrl as string
                         }} className='h-52 object-contain w-full rounded-t-xl' />
 
-                        <View className='pt-4 flex gap-y-3 rounded-b-xl px-3'>
+                        <View className='pt-4 flex gap-y-3 rounded-b-xl px-3 pb-3'>
                             <Text className='text-xl font-semibold px-1'>{insertLineBreaks(hotel?.hotelName, 25)}</Text>
                             <Text className='text-sm text-gray-500 font-medium px-1'>🏨 {insertLineBreaks(hotel?.hotelAddress, 40)}</Text>
                             <Text className='text-sm text-gray-500 font-medium px-1'>🍽️ {insertLineBreaks(hotel?.description, 40)}</Text>
@@ -40,7 +40,6 @@ const HotelRecommendation = ({ trip }: { trip: Trip }) => {
                                     💰 ${hotel?.price} per night
                                 </Text>
                             </View>
-                            <Text className='text-base text-gray-500 font-medium px-1'></Text>
                         </View>
                     </View>
                 ))}
