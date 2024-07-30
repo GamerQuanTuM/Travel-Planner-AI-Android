@@ -1,6 +1,6 @@
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, ToastAndroid } from 'react-native'
 import { useRouter } from 'expo-router'
-import React, { useState } from 'react'
 import { Container } from '~/components/Container'
 import useTripContext, { Person as PersonType } from '~/context/TripContext'
 

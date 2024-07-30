@@ -1,11 +1,11 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Redirect } from 'expo-router';
+
 import { Drawer } from 'expo-router/drawer';
 import CustomDrawerContent from '~/components/CustomDrawerContent';
 import useAuthContext from '~/context/AuthContext';
 import Loading from '~/components/Loading';
-import { Redirect } from 'expo-router';
 
 export default function Layout() {
 

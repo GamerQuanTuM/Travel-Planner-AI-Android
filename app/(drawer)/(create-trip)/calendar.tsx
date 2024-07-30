@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ToastAndroid } from 'react-native';
+import { useRouter } from 'expo-router';
+
 import { Container } from '~/components/Container';
 import CalendarPicker from 'react-native-calendar-picker';
 import { differenceInDays } from 'date-fns';
 import useTripContext from '~/context/TripContext';
-import { useRouter } from 'expo-router';
 
 const Calendar = () => {
     const { setDuration } = useTripContext();

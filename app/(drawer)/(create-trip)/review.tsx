@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
+import { useRouter } from 'expo-router'
+
 import { Container } from '~/components/Container'
 import useTripContext from '~/context/TripContext'
-import { useRouter } from 'expo-router'
 
 const Review = () => {
     const { place, duration, boarding, budget, person, handleGenerateTrip } = useTripContext();

@@ -1,6 +1,6 @@
 
-import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { Redirect, useRouter } from 'expo-router'
 import useAuthContext from '~/context/AuthContext'
 

@@ -1,6 +1,6 @@
+import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, ToastAndroid } from 'react-native'
-import React, { useEffect } from 'react'
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+// import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { Container } from '~/components/Container';
 import { useRouter } from 'expo-router';
 import useTripContext from '~/context/TripContext';

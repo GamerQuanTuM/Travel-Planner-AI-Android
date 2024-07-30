@@ -1,6 +1,7 @@
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { Link, useRouter } from 'expo-router'
+
 import useAuthContext from '~/context/AuthContext'
 import { Container } from '~/components/Container'
 

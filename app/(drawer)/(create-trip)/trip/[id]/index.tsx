@@ -1,13 +1,13 @@
-import { ScrollView, Text, BackHandler, Image, View, LayoutChangeEvent } from 'react-native'
-import React, { ReactNode, useEffect, useRef, useState } from 'react'
-import { Container } from '~/components/Container'
-import { Redirect, useLocalSearchParams, useNavigation, useRouter, } from 'expo-router';
+import { ScrollView, Text, BackHandler, Image, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { useLocalSearchParams, useNavigation, useRouter, } from 'expo-router';
 import axiosInstance from '~/lib/axiosInstance';
 import LoadingTrip from '~/components/LoadingTrip';
 import { Trip as TripType } from '~/typings/trip';
 import { Itinerary } from '~/typings/itinerary';
 import FlightRecommendation from '~/components/FlightRecommendation';
 import HotelRecommendation from '~/components/HotelRecommendation';
+import DayWisePlan from '~/components/DayWisePlan';
 
 type TravelDetailsWithoutTrip = Omit<Itinerary, "trip">
 
@@ -17,11 +17,7 @@ const Trip = () => {
     const navigation = useNavigation();
     const [loading, setLoading] = useState(false);
     const [trip, setTrip] = useState<TripType | null>(null)
-    const [cover, setCover] = useState<string | null>(null)
     const [travelDetails, setTravelDetails] = useState<TravelDetailsWithoutTrip | null>(null)
-
-    const [contentHeight, setContentHeight] = useState(0);
-    const scrollViewRef = useRef<ScrollView>(null);
 
     useEffect(() => {
         const backHandler = BackHandler.addEventListener(
@@ -43,7 +39,7 @@ const Trip = () => {
                 });
                 setLoading(false);
                 setTrip(data?.message?.trip as TripType)
-                setTravelDetails(data?.message)
+                setTravelDetails(data?.message as TravelDetailsWithoutTrip)
             } catch (error: any) {
                 setLoading(false);
                 console.error(error);
@@ -56,28 +52,6 @@ const Trip = () => {
     }, [id]);
 
     if (loading) return <LoadingTrip />
-
-    const insertLineBreaks = (text: string, maxLength: number) => {
-        if (!text) return '';
-        const words = text.split(' ');
-        let result = '';
-        let lineLength = 0;
-
-        for (let i = 0; i < words.length; i++) {
-            if (lineLength + words[i].length + 1 > maxLength) {
-                result += '\n';
-                lineLength = 0;
-            }
-            result += words[i] + ' ';
-            lineLength += words[i].length + 1;
-        }
-        return result.trim();
-    };
-
-
-
-
-
     return (
         <ScrollView>
             <Image className='w-full mx-auto h-[300px]' source={{
@@ -92,6 +66,7 @@ const Trip = () => {
 
                 <FlightRecommendation trip={trip as TripType} />
                 <HotelRecommendation trip={trip as TripType} />
+                <DayWisePlan trip={trip as TripType} />
             </ScrollView>
         </ScrollView>
     )

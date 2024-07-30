@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, Image, FlatList, TouchableOpacity } from 'react-native';
-import { Container } from "~/components/Container";
+import { useRouter } from "expo-router";
+
 import axiosInstance from "~/lib/axiosInstance";
 import useAuthContext from "~/context/AuthContext";
 import Loading from "~/components/LoadingTrip";
-import { useRouter } from "expo-router";
 import NoTrip from "~/components/NoTrip";
 import { Itinerary } from "~/typings/itinerary";
 
