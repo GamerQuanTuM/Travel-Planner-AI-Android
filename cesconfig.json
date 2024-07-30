@@ -1,6 +1,6 @@
 {
   "cesVersion": "2.11.14",
-  "projectName": "my-expo-app",
+  "projectName": "travel-planner-ai",
   "packages": [
     {
       "name": "expo-router",

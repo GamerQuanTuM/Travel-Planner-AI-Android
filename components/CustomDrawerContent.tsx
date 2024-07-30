@@ -20,16 +20,20 @@ const CustomDrawerContent = (props: any) => {
             <DrawerItemList {...props} />
 
             <View className='space-y-4 w-full'>
-                <View className='flex flex-row gap-x-4 items-center h-14 w-full px-3'>
+                <View className='flex flex-row gap-x-2 items-center h-14 w-full px-3'>
                     <AntDesign name="profile" size={28} color="black" />
                     <View className='px-2 flex-shrink-1'>
-                        <Text className='text-lg font-semibold' numberOfLines={1} ellipsizeMode='tail'>{user?.name}</Text>
+                        <Text className='text-lg font-semibold'
+                            // numberOfLines={1} ellipsizeMode='middle'
+                        >{user && user?.name?.length > 15 ? `${user?.name?.substring(0, 15)}...` : user?.name}</Text>
                     </View>
                 </View>
-                <View className='flex flex-row gap-x-4 items-center h-14 w-full px-3'>
+                <View className='flex flex-row gap-x-2 items-center h-14 w-full px-3'>
                     <Fontisto name="email" size={28} color="black" />
                     <View className='px-2 flex-shrink-1'>
-                        <Text className='text-lg font-semibold' numberOfLines={1} ellipsizeMode='tail'>{user?.email}</Text>
+                        <Text className='text-lg font-semibold'
+                        // numberOfLines={1} ellipsizeMode='middle'
+                        >{user && user?.email?.length > 15 ? `${user?.email?.substring(0, 15)}...` : user?.email}</Text>
                     </View>
                 </View>
             </View>

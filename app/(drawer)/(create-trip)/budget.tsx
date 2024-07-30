@@ -15,13 +15,13 @@ const Budget = () => {
     const [active, setActive] = useState<Active | null>(null)
     const [error, setError] = useState<string | null>(null)
 
-    const { setPerson,setBudget } = useTripContext()
+    const { setBudget } = useTripContext()
 
     const OPTIONS = {
         Cheap: {
            icon:'💵', heading:'Cheap', subHeading:'Stay conscious of costs'
         },
-        Modearte: {
+        Moderate: {
           icon:'💰', heading:'Moderate', subHeading:'Keep cost on the average side'
         },
         Luxury: {

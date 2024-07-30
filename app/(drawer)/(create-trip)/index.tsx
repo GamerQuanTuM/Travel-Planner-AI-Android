@@ -1,17 +1,21 @@
-import { View, Text } from 'react-native'
+import { View, Text,TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useRouter } from 'expo-router';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo, AntDesign } from '@expo/vector-icons';
 
 import { Container } from '~/components/Container'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Home = () => {
     const router = useRouter()
     return (
         <Container>
             <View className='mb-40'>
-                <Text className='font-bold text-3xl'>My Trips</Text>
+                <View className='w-full flex flex-row items-center justify-between'>
+                    <Text className='font-bold text-3xl'>Home</Text>
+                    <TouchableOpacity onPress={()=>router.push("/modal")}>
+                        <AntDesign name="infocirlce" size={24} color="black" />
+                    </TouchableOpacity>
+                </View>
             </View>
 
             <View className='flex flex-col items-center justify-center mt-40 gap-y-3 w-[80%] mx-auto'>
@@ -23,7 +27,7 @@ const Home = () => {
                 <Text className='font-medium text-base text-gray-500 mt-2'>Looks like its time to plan a new travel experience! Get started below</Text>
             </View>
 
-            <TouchableOpacity onPress={()=>router.push("/(create-trip)/person")} className='rounded-full w-[80%] h-14 bg-black flex items-center justify-center mt-12 mx-auto'>
+            <TouchableOpacity onPress={() => router.push("/(create-trip)/places")} className='rounded-full w-[80%] h-14 bg-black flex items-center justify-center mt-12 mx-auto'>
                 <Text className='text-white font-normal text-base'>Create Trip</Text>
             </TouchableOpacity>
         </Container>

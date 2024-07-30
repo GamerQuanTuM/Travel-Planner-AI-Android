@@ -1,3 +1,4 @@
+import React from "react"
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -53,6 +54,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsLoading(true);
       const { data } = await axiosInstance.post("/auth/login", { email, password });
       setUser(data?.message);
+      data?.message && console.log(true);
       setIsLoggedIn(true);
       const jsonValue = JSON.stringify(data.message);
       await AsyncStorage.setItem('session', jsonValue);

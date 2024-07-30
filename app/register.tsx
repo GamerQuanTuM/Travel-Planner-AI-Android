@@ -13,15 +13,15 @@ const Register = () => {
             <View className='flex flex-col items-center justify-center mt-8 space-y-8'>
                 <View className='flex flex-col w-full gap-y-2'>
                     <Text className='text-base font-medium text-gray-500 mx-2'>Email</Text>
-                    <TextInput textContentType='emailAddress' className='border w-full h-12 rounded-xl px-5' />
+                    <TextInput textContentType='emailAddress' className='border w-full h-12 rounded-xl px-5 text-xl' />
                 </View>
                 <View className='flex flex-col w-full gap-y-2'>
                     <Text className='text-base font-medium text-gray-500 mx-2'>Username</Text>
-                    <TextInput textContentType='username' className='border w-full h-12 rounded-xl px-5' />
+                    <TextInput textContentType='username' className='border w-full h-12 rounded-xl px-5 text-xl' />
                 </View>
                 <View className='flex flex-col w-full gap-y-2'>
                     <Text className='text-base font-medium text-gray-500 mx-2'>Password</Text>
-                    <TextInput textContentType='password' className='border w-full h-12 rounded-xl px-5' />
+                    <TextInput textContentType='password' className='border w-full h-12 rounded-xl px-5 text-xl' />
                 </View>
             </View>
             <View className='space-y-5 mt-10'>

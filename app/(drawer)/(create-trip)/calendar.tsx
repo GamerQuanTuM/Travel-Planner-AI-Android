@@ -36,7 +36,7 @@ const Calendar = () => {
             }
         } else {
             ToastAndroid.show('Please select both start and end dates.', ToastAndroid.SHORT);
-            
+
         }
     }
 
@@ -46,6 +46,7 @@ const Calendar = () => {
                 <Text className='font-bold text-3xl mb-4'>Calendar</Text>
                 <View>
                     <CalendarPicker
+                        allowBackwardRangeSelect={true}
                         allowRangeSelection={true}
                         minDate={minDate}
                         selectedRangeStyle={{

@@ -44,7 +44,7 @@ const Person = () => {
     }
 
     return (
-        <Container navigate='/(create-trip)'>
+        <Container navigate='/(create-trip)/places'>
             <View className='w-[95%] mx-auto'>
                 <View>
                     <Text className='font-bold text-3xl'>Who's Travelling</Text>

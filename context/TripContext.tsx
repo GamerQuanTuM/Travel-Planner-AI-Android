@@ -1,10 +1,10 @@
-import React from "react"
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
+import { useRouter } from "expo-router";
 
 import axiosInstance from "~/lib/axiosInstance";
 import useAuthContext from "./AuthContext";
 import { Trip } from "~/typings/trip";
+import LoadingTrip from "~/components/LoadingTrip";
 
 
 export type Person = "Me" | "Couple" | "Family" | "Friends" | undefined
@@ -16,8 +16,14 @@ interface TripContextType {
     setPerson: Dispatch<SetStateAction<Person>>
     setPlace: Dispatch<SetStateAction<string | undefined>>
     setBoarding: Dispatch<SetStateAction<string | undefined>>
-    handleGenerateTrip: () => Promise<Trip | undefined>
-    loading: boolean
+    handleGenerateTrip: () => Promise<void>
+    loading: boolean,
+    place: string | undefined;
+    boarding: string | undefined,
+    person: Person,
+    budget: Budget,
+    duration: string,
+
 }
 
 // Create the context with an initial value
@@ -31,8 +37,9 @@ export const TripProvider = ({ children }: { children: ReactNode }) => {
     const [loading, setLoading] = useState(false);
 
     const { user } = useAuthContext()
+    const router = useRouter()
 
-    console.log(budget)
+
 
     const handleGenerateTrip = async () => {
         try {
@@ -46,20 +53,26 @@ export const TripProvider = ({ children }: { children: ReactNode }) => {
                 duration: parseInt(duration)
             })
             const trip = res.data.message
-            if (!trip || !trip.message || !trip.message.id) {
-                console.log('Invalid trip data received from API');
-            }
             setLoading(false)
-            return trip as Trip
+            if (trip) {
+                router.push(`/(create-trip)/trip/${trip?.id}`)
+            }
+
         } catch (error) {
             setLoading(false)
             console.error('Error generating trip:', error);
         }
     }
 
+    if (loading) {
+        return <LoadingTrip />
+    }
+
+
+
 
     return (
-        <TripContext.Provider value={{ setBoarding, setBudget, setDuration, setPerson, setPlace, handleGenerateTrip, loading }}>
+        <TripContext.Provider value={{ setBoarding, setBudget, setDuration, setPerson, setPlace, handleGenerateTrip, loading, boarding, budget, duration, person, place }}>
             {children}
         </TripContext.Provider>
     );

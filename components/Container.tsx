@@ -1,3 +1,4 @@
+import React from "react"
 import { StyleSheet, SafeAreaView, View, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';

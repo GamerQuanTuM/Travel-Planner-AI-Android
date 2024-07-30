@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "my-expo-app",
-    "slug": "my-expo-app",
+    "name": "travel-planner-ai",
+    "slug": "travel-planner-ai",
     "version": "1.0.0",
-    "scheme": "my-expo-app",
+    "scheme": "travel-planner-ai",
     "web": {
       "bundler": "metro",
       "output": "static",
@@ -36,6 +36,14 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.shuvam.travel_planner_ai"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "2008a375-3c31-492a-9130-429d2ccce76b"
+      }
     }
   }
 }
