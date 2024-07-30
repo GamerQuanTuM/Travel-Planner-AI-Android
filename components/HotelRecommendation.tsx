@@ -4,6 +4,7 @@ import { Trip } from '~/typings/trip'
 import { ScrollView } from 'react-native-gesture-handler'
 import insertLineBreaks from '~/functions/insertLineBreaks'
 
+
 const HotelRecommendation = ({ trip }: { trip: Trip }) => {
     return (
         <View className='mb-5'>
@@ -24,9 +25,14 @@ const HotelRecommendation = ({ trip }: { trip: Trip }) => {
                             elevation: 5,
                         }}
                     >
-                        <Image source={{
-                            uri: hotel?.hotelImageUrl as string
-                        }} className='h-52 object-contain w-full rounded-t-xl' />
+                        {hotel?.hotelImageUrl
+                            ?
+                            <Image source={{
+                                uri: hotel?.hotelImageUrl as string
+                            }} className='h-52 object-contain w-full rounded-t-xl' />
+                            :
+                            <Image source={require('~/assets/placeholder.jpeg')} className='h-52 object-contain w-full rounded-t-xl' />
+                        }
 
                         <View className='pt-4 flex gap-y-3 rounded-b-xl px-3 pb-3'>
                             <Text className='text-xl font-semibold px-1'>{insertLineBreaks(hotel?.hotelName, 25)}</Text>

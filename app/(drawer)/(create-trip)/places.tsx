@@ -1,74 +1,32 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, TextInput, ToastAndroid } from 'react-native'
-// import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import React from 'react';
+import { View, Text, TouchableOpacity, ToastAndroid } from 'react-native';
 import { Container } from '~/components/Container';
 import { useRouter } from 'expo-router';
 import useTripContext from '~/context/TripContext';
+import PlaceSelector from '~/components/PlaceSelectror';
+import OriginSelector from '~/components/OriginSelector';
 
 const Places = () => {
-    const router = useRouter()
-    const { setPlace, setBoarding, place, boarding } = useTripContext()
+    const router = useRouter();
+    const { place, boarding } = useTripContext();
 
     const handlePress = () => {
         if (!boarding || !place) {
-            ToastAndroid.show('Please select travel of destination and origin.', ToastAndroid.SHORT);
+            ToastAndroid.show('Please select travel destination and origin.', ToastAndroid.SHORT);
         } else {
-            router.push("/(create-trip)/person")
+            router.push("/(create-trip)/person");
         }
-    }
-
+    };
 
     return (
         <Container navigate='/(create-trip)'>
             <View className='w-[95%] mx-auto relative h-full'>
+                <View className='mb-20'>
+                    <Text className='font-bold text-3xl'>Destination & Travel Origin</Text>
+                </View>
                 <View className='flex flex-col gap-y-10'>
-                    <View className='gap-y-3'>
-                        <Text className='font-bold text-2xl'>Choose your travel of destination</Text>
-                        {/* <GooglePlacesAutocomplete
-                            placeholder='Search'
-                            
-                            styles={{
-                                textInputContainer: {
-                                    backgroundColor: 'grey',
-                                    borderColor: "black",
-                                    height: 20,
-                                    width: "100%"
-                                },
-                                textInput: {
-                                    height: 38,
-                                    color: '#5d5d5d',
-                                    fontSize: 16,
-                                },
-                                predefinedPlacesDescription: {
-                                    color: '#1faadb',
-                                },
-                            }}
-                            onPress={(data, details) => {
-                                console.log(data, details);
-                            }}
-                            query={{
-                                key: process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY,
-                                language: 'en',
-                            }}
-                        /> */}
-
-                        <TextInput onChangeText={(place) => setPlace(place as string)} textContentType='emailAddress' className='border w-full h-12 rounded-xl px-5 text-xl' />
-                    </View>
-                    <View className='gap-y-3'>
-                        <Text className='font-bold text-2xl'>Choose your travel of origin</Text>
-                        {/* <GooglePlacesAutocomplete
-                            placeholder='Search'
-                            onPress={(data, details = null) => {
-                                console.log(data, details);
-                            }}
-                            query={{
-                                key: process.env.GOOGLE_PLACES_API_KEY,
-                                language: 'en',
-                            }}
-                        /> */}
-
-                        <TextInput onChangeText={(place) => setBoarding(place as string)} textContentType='emailAddress' className='border w-full h-12 rounded-xl px-5 text-xl' />
-                    </View>
+                    <PlaceSelector />
+                    <OriginSelector />
                 </View>
 
                 <View className='absolute bottom-0 self-center mb-32 w-full'>
@@ -78,7 +36,7 @@ const Places = () => {
                 </View>
             </View>
         </Container>
-    )
-}
+    );
+};
 
-export default Places
+export default Places;

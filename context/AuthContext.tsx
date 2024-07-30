@@ -82,14 +82,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = async () => {
     try {
+      setIsLoading(true);
       const response = await axiosInstance.get("/auth/logout");
       if (response.status === 200) {
         await AsyncStorage.removeItem('session');
+        setIsLoading(false);
         setUser(null);
         setIsLoggedIn(false);
       }
     } catch (err: any) {
       console.error(err?.response);
+      setIsLoading(false)
     }
   };
 

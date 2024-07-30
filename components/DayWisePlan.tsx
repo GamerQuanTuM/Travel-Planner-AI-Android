@@ -25,9 +25,18 @@ const DayWisePlan = ({ trip }: { trip: Trip }) => {
                                     shadowRadius: 6,
                                     elevation: 5,
                                 }}>
-                                <Image source={{
-                                    uri: place?.placesImageUrl as string
-                                }} alt='places.png' className='w-full h-40 object-cover rounded-t-xl' />
+                                {place?.placesImageUrl ? (
+                                    <Image
+                                        source={{ uri: place.placesImageUrl }}
+                                        className="h-52 w-full rounded-t-xl object-contain"
+                                    />
+                                ) : (
+                                    <Image
+                                        source={require('~/assets/placeholder.jpeg')}
+                                        className="h-52 w-full rounded-t-xl object-contain"
+                                    />
+                                )}
+
 
 
                                 <View className='pt-3 pb-3 space-y-2 rounded-b-xl px-3'>
@@ -35,9 +44,8 @@ const DayWisePlan = ({ trip }: { trip: Trip }) => {
                                     <Text className='text-sm text-gray-500 font-medium px-1'>{insertLineBreaks(place?.description, 40)}</Text>
                                     <Text className='text-base text-gray-600 font-medium px-1'>🎟️&nbsp; Ticket Price &nbsp;
                                         <Text className='text-black font-semibold'>
-                                            {(place?.price === "Free" )? `${place.price}` : `$${place.price}`}
+                                            {(place?.price === "Free") ? `${place.price}` : `$${place.price}`}
 
-                                            {/* {place?.price} */}
                                         </Text>
                                     </Text>
 
