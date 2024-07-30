@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-import { useRouter } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 
 import { Container } from '~/components/Container'
 import useAuthContext from '~/context/AuthContext'
@@ -32,9 +32,11 @@ const Register = () => {
                 </View>
             </View>
             <View className='space-y-5 mt-10'>
-                <TouchableOpacity className='rounded-full w-full h-14 bg-black flex items-center justify-center mt-4' onPress={() => register({ email, name, password })}>
-                    <Text className='text-white font-normal text-base'>Create Account</Text>
-                </TouchableOpacity>
+                <Link href={"/(drawer)"} asChild replace>
+                    <TouchableOpacity className='rounded-full w-full h-14 bg-black flex items-center justify-center mt-4' onPress={() => register({ email, name, password })}>
+                        <Text className='text-white font-normal text-base'>Create Account</Text>
+                    </TouchableOpacity>
+                </Link>
                 <TouchableOpacity className='rounded-full w-full h-14 bg-white border-[1px] border-gray-300 flex items-center justify-center mt-4' onPress={() => router.push("/login")}>
                     <Text className='text-black font-normal text-base'>Sign In</Text>
                 </TouchableOpacity>
