@@ -1,6 +1,8 @@
 import React from "react"
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { ToastAndroid } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { isAxiosError } from "axios";
 
 import axiosInstance from "~/lib/axiosInstance";
 
@@ -40,7 +42,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setIsLoggedIn(true);
         }
       } catch (error: any) {
-        console.error(error.message);
+        console.log(error)
+        setIsLoading(false)
+        if (isAxiosError(error) && error.response?.data) {
+          ToastAndroid.show(error.response?.data?.message, ToastAndroid.SHORT);
+        } else {
+          ToastAndroid.show("Something went wrong", ToastAndroid.SHORT);
+        }
       } finally {
         setIsLoading(false);
       }
@@ -54,12 +62,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsLoading(true);
       const { data } = await axiosInstance.post("/auth/login", { email, password });
       setUser(data?.message);
-      data?.message && console.log(true);
+      console.log(data?.message);
       setIsLoggedIn(true);
       const jsonValue = JSON.stringify(data.message);
       await AsyncStorage.setItem('session', jsonValue);
-    } catch (err: any) {
-      console.error(err?.response);
+    } catch (error: any) {
+      console.error(error?.response);
+      setIsLoading(false)
+      if (isAxiosError(error) && error.response?.data) {
+        ToastAndroid.show(error.response?.data?.message, ToastAndroid.SHORT);
+      } else {
+        ToastAndroid.show("Something went wrong", ToastAndroid.SHORT);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -73,8 +87,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsLoggedIn(true);
       const jsonValue = JSON.stringify(data.message);
       await AsyncStorage.setItem('session', jsonValue);
-    } catch (err: any) {
-      console.error(err?.response);
+    } catch (error: any) {
+      console.error(error?.response);
+      setIsLoading(false)
+      if (isAxiosError(error) && error.response?.data) {
+        ToastAndroid.show(error.response?.data?.message, ToastAndroid.SHORT);
+      } else {
+        ToastAndroid.show("Something went wrong", ToastAndroid.SHORT);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -90,9 +110,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(null);
         setIsLoggedIn(false);
       }
-    } catch (err: any) {
-      console.error(err?.response);
+    } catch (error: any) {
+      console.error(error?.response);
       setIsLoading(false)
+      if (isAxiosError(error) && error.response?.data) {
+        ToastAndroid.show(error.response?.data?.message, ToastAndroid.SHORT);
+      } else {
+        ToastAndroid.show("Something went wrong", ToastAndroid.SHORT);
+      }
     }
   };
 

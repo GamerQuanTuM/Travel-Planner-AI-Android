@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import useTripContext from '~/context/TripContext';
 import PlaceSelector from '~/components/PlaceSelectror';
 import OriginSelector from '~/components/OriginSelector';
+import getFontSize from '~/functions/fontSizeResponsive';
 
 const Places = () => {
     const router = useRouter();
@@ -22,7 +23,7 @@ const Places = () => {
         <Container navigate='/(create-trip)'>
             <View className='w-[95%] mx-auto relative h-full'>
                 <View className='mb-20'>
-                    <Text className='font-bold text-3xl'>Destination & Travel Origin</Text>
+                    <Text style={{ fontSize: getFontSize(30) }} className='font-bold'>Destination & Travel Origin</Text>
                 </View>
                 <View className='flex flex-col gap-y-10'>
                     <PlaceSelector />
@@ -31,7 +32,7 @@ const Places = () => {
 
                 <View className='absolute bottom-0 self-center mb-32 w-full'>
                     <TouchableOpacity className='rounded-full w-full h-14 bg-black flex items-center justify-center mt-4' onPress={handlePress}>
-                        <Text className='text-white font-normal text-base'>Create Account</Text>
+                        <Text style={{ fontSize: getFontSize(16) }} className='text-white font-normal'>Create Account</Text>
                     </TouchableOpacity>
                 </View>
             </View>

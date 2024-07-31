@@ -4,6 +4,8 @@ import { useRouter } from 'expo-router'
 
 import { Container } from '~/components/Container'
 import useTripContext from '~/context/TripContext'
+import insertLineBreaks from '~/functions/insertLineBreaks'
+import getFontSize from '~/functions/fontSizeResponsive'
 
 const Review = () => {
     const { place, duration, boarding, budget, person, handleGenerateTrip } = useTripContext();
@@ -11,10 +13,10 @@ const Review = () => {
         <Container>
             <View className='w-[95%] mx-auto'>
                 <View>
-                    <Text className='font-bold text-3xl'>Review Your Trip</Text>
+                    <Text style={{ fontSize: getFontSize(30) }} className='font-bold'>Review Your Trip</Text>
                 </View>
                 <View className='mt-5'>
-                    <Text className='font-bold text-xl'>Before generating your trip, please review your selection</Text>
+                    <Text style={{ fontSize: getFontSize(20) }} className='font-bold'>Before generating your trip, please review your selection</Text>
                 </View>
 
                 <View className='mt-7'>
@@ -28,7 +30,7 @@ const Review = () => {
                 </View>
                 <View className='mt-5'>
                     <TouchableOpacity className='rounded-full w-full h-14 bg-black flex items-center justify-center mt-4' onPress={handleGenerateTrip}>
-                        <Text className='text-white font-normal text-base'>Generate Trip</Text>
+                        <Text style={{ fontSize: getFontSize(16) }} className='text-white font-normal'>Generate Trip</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -49,16 +51,16 @@ type CardProps = {
 
 const Card = ({ heading, description, icon, navigate }: CardProps) => {
     const router = useRouter()
-    return(
+    return (
         <TouchableOpacity
             onPress={() => router.push(navigate)}
             className={`mt-4 w-full rounded-xl bg-gray-200 p-2 shadow-md `}
         >
             <View className='flex flex-row items-center gap-x-4'>
-                <Text className='text-4xl'>{icon}</Text>
+                <Text style={{ fontSize: getFontSize(36) }}>{icon}</Text>
                 <View className='flex flex-col'>
-                    <Text className='font-medium text-base text-gray-500'>{heading}</Text>
-                    <Text className='font-semibold text-xl'>{description}</Text>
+                    <Text style={{ fontSize: getFontSize(16) }} className='font-medium text-gray-500'>{insertLineBreaks(heading, 25)}</Text>
+                    <Text style={{ fontSize: getFontSize(20) }} className='font-semibold'>{insertLineBreaks(description, 25)}</Text>
                 </View>
 
             </View>

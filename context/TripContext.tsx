@@ -1,10 +1,11 @@
-import React, { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
+import React, { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 import { useRouter } from "expo-router";
+import { isAxiosError } from "axios";
 
 import axiosInstance from "~/lib/axiosInstance";
 import useAuthContext from "./AuthContext";
-import { Trip } from "~/typings/trip";
 import LoadingTrip from "~/components/LoadingTrip";
+import { ToastAndroid } from "react-native";
 
 
 export type Person = "Me" | "Couple" | "Family" | "Friends" | undefined
@@ -35,11 +36,8 @@ export const TripProvider = ({ children }: { children: ReactNode }) => {
     const [boarding, setBoarding] = useState<string | undefined>(undefined)
     const [duration, setDuration] = useState<string>("0")
     const [loading, setLoading] = useState(false);
-
     const { user } = useAuthContext()
     const router = useRouter()
-
-
 
     const handleGenerateTrip = async () => {
         try {
@@ -58,9 +56,15 @@ export const TripProvider = ({ children }: { children: ReactNode }) => {
                 router.push(`/(create-trip)/trip/${trip?.id}`)
             }
 
-        } catch (error) {
+        } catch (error: any) {
             setLoading(false)
             console.error('Error generating trip:', error);
+            if (isAxiosError(error) && error.response?.data) {
+                ToastAndroid.show(error.response?.data?.message, ToastAndroid.SHORT);
+            } else {
+                ToastAndroid.show("Something went wrong", ToastAndroid.SHORT);
+            }
+            router.replace("/(drawer)")
         }
     }
 

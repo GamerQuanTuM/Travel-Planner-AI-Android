@@ -16,7 +16,7 @@ const Loading = () => {
                 }}
                 source={require('~/assets/loading.json')}
             />
-            <View className='absolute bottom-0 self-center mb-4'>
+            <View className='absolute bottom-5 self-center mb-5'>
                 <Image source={require("~/assets/travel-ai-extended.png")} className="h-14 w-40" />
             </View>
         </View>

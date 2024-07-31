@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, FlatList } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import useTripContext from '~/context/TripContext';
+import getFontSize from '~/functions/fontSizeResponsive';
 
 const PlaceSelector = () => {
     const { setPlace } = useTripContext();
@@ -29,7 +30,7 @@ const PlaceSelector = () => {
             borderRadius: 5,
             paddingVertical: 10,
             paddingHorizontal: 20,
-            fontSize: 16,
+            fontSize: getFontSize(16),
             flex: 1,
             color: '#333',
         },
@@ -63,7 +64,7 @@ const PlaceSelector = () => {
             backgroundColor: '#c8c7cc',
         },
         description: {
-            fontSize: 15,
+            fontSize: getFontSize(15),
             color: '#333',
         },
         loader: {
@@ -78,7 +79,7 @@ const PlaceSelector = () => {
             data={[{ key: '1' }]}
             renderItem={() => (
                 <>
-                    <Text className='font-bold text-2xl'>Choose your travel destination</Text>
+                    <Text style={{ fontSize: getFontSize(24) }} className='font-bold'>Choose your travel destination</Text>
                     <GooglePlacesAutocomplete
                         placeholder='Search destination'
                         styles={styles}

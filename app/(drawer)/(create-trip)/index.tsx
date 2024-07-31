@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 
 import { Container } from '~/components/Container'
+import getFontSize from '~/functions/fontSizeResponsive';
 
 const Home = () => {
     const router = useRouter()
@@ -11,7 +12,7 @@ const Home = () => {
         <Container>
             <View className='mb-40'>
                 <View className='w-full flex flex-row items-center justify-between'>
-                    <Text className='font-bold text-3xl'>Home</Text>
+                    <Text style={{ fontSize: getFontSize(30) }} className='font-bold'>Home</Text>
                     <TouchableOpacity onPress={()=>router.push("/modal")}>
                         <AntDesign name="infocirlce" size={24} color="black" />
                     </TouchableOpacity>
@@ -23,12 +24,12 @@ const Home = () => {
             </View>
 
             <View className='flex flex-col items-center justify-center mt-5'>
-                <Text className='font-semibold text-2xl text-center'>Generate a Trip</Text>
-                <Text className='font-medium text-base text-gray-500 mt-2'>Looks like its time to plan a new travel experience! Get started below</Text>
+                <Text style={{ fontSize: getFontSize(24) }} className='font-semibold text-center'>Generate a Trip</Text>
+                <Text style={{ fontSize: getFontSize(16) }} className='font-medium text-gray-500 mt-2'>Looks like its time to plan a new travel experience! Get started below</Text>
             </View>
 
             <TouchableOpacity onPress={() => router.push("/(create-trip)/places")} className='rounded-full w-[80%] h-14 bg-black flex items-center justify-center mt-12 mx-auto'>
-                <Text className='text-white font-normal text-base'>Create Trip</Text>
+                <Text style={{ fontSize: getFontSize(16) }} className='text-white font-normal'>Create Trip</Text>
             </TouchableOpacity>
         </Container>
     )

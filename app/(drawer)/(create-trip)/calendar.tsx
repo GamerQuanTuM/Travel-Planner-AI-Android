@@ -6,6 +6,7 @@ import { Container } from '~/components/Container';
 import CalendarPicker from 'react-native-calendar-picker';
 import { differenceInDays } from 'date-fns';
 import useTripContext from '~/context/TripContext';
+import getFontSize from '~/functions/fontSizeResponsive';
 
 const Calendar = () => {
     const { setDuration } = useTripContext();
@@ -44,7 +45,7 @@ const Calendar = () => {
     return (
         <Container navigate='/(create-trip)/person'>
             <View className=''>
-                <Text className='font-bold text-3xl mb-4'>Calendar</Text>
+                <Text style={{ fontSize: getFontSize(30) }} className='font-bold mb-4'>Calendar</Text>
                 <View>
                     <CalendarPicker
                         allowBackwardRangeSelect={true}
@@ -64,7 +65,7 @@ const Calendar = () => {
                     className='rounded-full w-full h-14 bg-black flex items-center justify-center mt-10'
                     onPress={handleDateChange}
                 >
-                    <Text className='text-white font-normal text-base'>Continue</Text>
+                    <Text style={{ fontSize: getFontSize(16) }} className='text-white font-normal'>Continue</Text>
                 </TouchableOpacity>
             </View>
         </Container>

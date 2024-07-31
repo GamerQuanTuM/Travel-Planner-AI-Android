@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, ToastAndroid } from 'react-native'
 import { useRouter } from 'expo-router'
 import { Container } from '~/components/Container'
 import useTripContext, { Person as PersonType } from '~/context/TripContext'
+import getFontSize from '~/functions/fontSizeResponsive'
 
 enum Active {
     ME = "Me",
@@ -47,10 +48,10 @@ const Person = () => {
         <Container navigate='/(create-trip)/places'>
             <View className='w-[95%] mx-auto'>
                 <View>
-                    <Text className='font-bold text-3xl'>Who's Travelling</Text>
+                    <Text style={{ fontSize: getFontSize(30) }} className='font-bold'>Who's Travelling</Text>
                 </View>
                 <View className='mt-5'>
-                    <Text className='font-bold text-xl'>Choose your travellers</Text>
+                    <Text style={{ fontSize: getFontSize(20) }} className='font-bold'>Choose your travellers</Text>
                 </View>
 
                 {Object.keys(OPTIONS).map((key) => {
@@ -65,10 +66,10 @@ const Person = () => {
                         >
                             <View className='flex flex-row items-center justify-between'>
                                 <View className='flex flex-col'>
-                                    <Text className='font-semibold text-xl'>{option.heading}</Text>
-                                    <Text className='font-medium text-base text-gray-500'>{option.subHeading}</Text>
+                                    <Text style={{ fontSize: getFontSize(20) }} className='font-semibold'>{option.heading}</Text>
+                                    <Text style={{ fontSize: getFontSize(14) }} className='font-medium text-gray-500'>{option.subHeading}</Text>
                                 </View>
-                                <Text className='text-4xl'>{option.icon}</Text>
+                                <Text style={{ fontSize: getFontSize(36) }}>{option.icon}</Text>
                             </View>
                         </TouchableOpacity>
                     );
@@ -78,7 +79,7 @@ const Person = () => {
                     className='rounded-full w-full h-14 bg-black flex items-center justify-center mt-8'
                     onPress={handlePress}
                 >
-                    <Text className='text-white font-normal text-base'>Continue</Text>
+                    <Text style={{ fontSize: getFontSize(16) }} className='text-white font-normal'>Continue</Text>
                 </TouchableOpacity>
             </View>
         </Container>

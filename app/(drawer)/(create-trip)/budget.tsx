@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { Container } from '~/components/Container'
 import useTripContext, { Budget as BudgetType } from '~/context/TripContext'
+import getFontSize from '~/functions/fontSizeResponsive'
 
 enum Active {
     CHEAP = "Cheap",
@@ -43,10 +44,10 @@ const Budget = () => {
         <Container navigate='/(create-trip)/calendar'>
             <View className='w-[95%] mx-auto'>
                 <View>
-                    <Text className='font-bold text-3xl'>Budget</Text>
+                    <Text style={{ fontSize: getFontSize(30) }} className='font-bold'>Budget</Text>
                 </View>
                 <View className='mt-5'>
-                    <Text className='font-bold text-xl'>Choose spending habits for your trip</Text>
+                    <Text style={{ fontSize: getFontSize(20) }} className='font-bold'>Choose spending habits for your trip</Text>
                 </View>
 
                 {Object.keys(OPTIONS).map((key) => {
@@ -61,10 +62,10 @@ const Budget = () => {
                         >
                             <View className='flex flex-row items-center justify-between'>
                                 <View className='flex flex-col'>
-                                    <Text className='font-semibold text-xl'>{option.heading}</Text>
-                                    <Text className='font-medium text-base text-gray-500'>{option.subHeading}</Text>
+                                    <Text style={{ fontSize: getFontSize(20) }} className='font-semibold'>{option.heading}</Text>
+                                    <Text style={{ fontSize: getFontSize(14) }} className='font-medium text-gray-500'>{option.subHeading}</Text>
                                 </View>
-                                <Text className='text-4xl'>{option.icon}</Text>
+                                <Text style={{ fontSize: getFontSize(36) }}>{option.icon}</Text>
                             </View>
                         </TouchableOpacity>
                     );
@@ -74,7 +75,7 @@ const Budget = () => {
                     className='rounded-full w-full h-14 bg-black flex items-center justify-center mt-8'
                     onPress={handlePress}
                 >
-                    <Text className='text-white font-normal text-base'>Continue</Text>
+                    <Text style={{ fontSize: getFontSize(16) }} className='text-white font-normal'>Continue</Text>
                 </TouchableOpacity>
             </View>
         </Container>
