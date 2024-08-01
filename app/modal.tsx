@@ -26,9 +26,9 @@ export default function Modal() {
           setLoading(false)
           console.error('Error generating trip:', error);
           if (isAxiosError(error) && error.response?.data) {
-              ToastAndroid.show(error.response?.data?.message, ToastAndroid.SHORT);
+            ToastAndroid.show(error.response?.data?.message, ToastAndroid.SHORT);
           } else {
-              ToastAndroid.show("Something went wrong", ToastAndroid.SHORT);
+            ToastAndroid.show("Something went wrong", ToastAndroid.SHORT);
           }
           router.replace("/(drawer)")
         })
@@ -52,58 +52,61 @@ export default function Modal() {
           </Text>
         </View>
       </View>
-
     );
   }
 
   return (
-    <>
+    <View className="flex-1 bg-gray-100">
       <Text style={{ fontSize: getFontSize(30) }} className='font-bold mx-[20px] mt-[70px]'>My Trips</Text>
 
-      <View className="mt-5 mx-[20px] space-y-1">
-        <Image
-          source={{ uri: itineraries[itineraries.length - 1]?.cover }}
-          alt="cover.png"
-          className="w-full h-40 rounded-xl"
-        />
-
-        <View>
-          <Text style={{ fontSize: getFontSize(20) }} className="font-semibold">{itineraries[itineraries.length - 1]?.destination}</Text>
-        </View>
-        <View className="flex flex-row justify-between items-center">
-          <Text style={{ fontSize: getFontSize(16) }} className="text-gray-400 font-semibold">{itineraries[itineraries.length - 1]?.duration} Days</Text>
-          <Text style={{ fontSize: getFontSize(16) }} className="text-gray-400 font-semibold">
-            🌉 {itineraries[itineraries.length - 1]?.travelType?.charAt(0).toUpperCase() + itineraries[itineraries.length - 1]?.travelType?.slice(1).toLowerCase()}
-          </Text>
-        </View>
-
-        <FlatList
-          data={itineraries}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => router.push(`/(drawer)/(create-trip)/trip/${item?.id}`)}
-              className="flex flex-row my-2 gap-x-1 mt-4 flex-1"
-            >
-              <View className="w-[30%]">
-                <Image
-                  source={{ uri: item?.cover }}
-                  alt="cover.png"
-                  className="w-full h-20 rounded-xl"
-                />
-              </View>
-              <View className="flex-1 px-2 gap-y-1">
-                <Text style={{ fontSize: getFontSize(20) }} className="font-semibold">{item.destination}</Text>
-                <Text style={{ fontSize: getFontSize(14) }} className="text-gray-400 font-semibold">{item.duration} Days</Text>
-                <Text style={{ fontSize: getFontSize(14) }} className="text-gray-400 font-semibold">
-                  Travelling {item.travelType?.charAt(0).toUpperCase() + item.travelType?.slice(1).toLowerCase()}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          )}
-          contentContainerStyle={{ paddingBottom: 20 }}
-        />
-      </View>
-    </>
+      <FlatList
+        contentContainerStyle={{
+          paddingBottom: 20
+        }}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        data={itineraries}
+        keyExtractor={(item) => item.id}
+        ListHeaderComponent={
+          <View className="mt-5 mx-[20px] space-y-1">
+            <Image
+              source={{ uri: itineraries[itineraries.length - 1]?.cover }}
+              alt="cover.png"
+              className="w-full h-40 rounded-xl"
+            />
+            <View>
+              <Text style={{ fontSize: getFontSize(20) }} className="font-semibold">{itineraries[itineraries.length - 1]?.destination}</Text>
+            </View>
+            <View className="flex flex-row justify-between items-center">
+              <Text style={{ fontSize: getFontSize(16) }} className="text-gray-400 font-semibold">{itineraries[itineraries.length - 1]?.duration} Days</Text>
+              <Text style={{ fontSize: getFontSize(16) }} className="text-gray-400 font-semibold">
+                🌉 {itineraries[itineraries.length - 1]?.travelType?.charAt(0).toUpperCase() + itineraries[itineraries.length - 1]?.travelType?.slice(1).toLowerCase()}
+              </Text>
+            </View>
+          </View>
+        }
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => router.push(`/(drawer)/(create-trip)/trip/${item?.id}`)}
+            className="flex flex-row my-2 gap-x-1 mt-4 flex-1 mx-[20px]"
+          >
+            <View className="w-[30%]">
+              <Image
+                source={{ uri: item?.cover }}
+                alt="cover.png"
+                className="w-full h-20 rounded-xl"
+              />
+            </View>
+            <View className="flex-1 px-2 gap-y-1">
+              <Text style={{ fontSize: getFontSize(20) }} className="font-semibold">{item.destination}</Text>
+              <Text style={{ fontSize: getFontSize(14) }} className="text-gray-400 font-semibold">{item.duration} Days</Text>
+              <Text style={{ fontSize: getFontSize(14) }} className="text-gray-400 font-semibold">
+                Travelling {item.travelType?.charAt(0).toUpperCase() + item.travelType?.slice(1).toLowerCase()}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
+    </View>
   );
 }
