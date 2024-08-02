@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Redirect } from 'expo-router';
 
@@ -37,6 +37,12 @@ export default function Layout() {
         }} >
         <Drawer.Screen
           name='(create-trip)'
+          options={{
+            drawerItemStyle: { display: 'none' }
+          }}
+        />
+        <Drawer.Screen
+          name='(upgrade-plan)'
           options={{
             drawerItemStyle: { display: 'none' }
           }}

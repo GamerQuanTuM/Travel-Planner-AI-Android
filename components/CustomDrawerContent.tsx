@@ -2,9 +2,10 @@ import React from 'react'
 import { TouchableOpacity, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer'
-import { AntDesign, Fontisto } from '@expo/vector-icons'
-import useAuthContext from '~/context/AuthContext'
 import { useRouter } from 'expo-router'
+
+import { AntDesign, Fontisto, MaterialIcons } from '@expo/vector-icons'
+import useAuthContext from '~/context/AuthContext'
 import getFontSize from '~/functions/fontSizeResponsive'
 
 const CustomDrawerContent = (props: any) => {
@@ -16,6 +17,10 @@ const CustomDrawerContent = (props: any) => {
         logout();
         router.replace("/")
     }
+
+    const handleUpgradePlan = () =>{
+        router.push("/(upgrade-plan)")
+    }
     return (
         <DrawerContentScrollView {...props} contentContainerStyle={{ paddingTop: top + 50, flex: 1, backgroundColor: '#f0f0f0' }}>
             <DrawerItemList {...props} />
@@ -25,7 +30,7 @@ const CustomDrawerContent = (props: any) => {
                     <AntDesign name="profile" size={28} color="black" />
                     <View className='px-2 flex-shrink-1'>
                         <Text style={{ fontSize: getFontSize(18) }} className='font-semibold'
-                            // numberOfLines={1} ellipsizeMode='middle'
+                        // numberOfLines={1} ellipsizeMode='middle'
                         >{user && user?.name?.length > 15 ? `${user?.name?.substring(0, 15)}...` : user?.name}</Text>
                     </View>
                 </View>
@@ -38,9 +43,14 @@ const CustomDrawerContent = (props: any) => {
                 </View>
             </View>
 
-            <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: bottom }}>
-                <TouchableOpacity className='w-full h-14 bg-black mt-4 flex items-center justify-center' onPress={handleLogout}>
-                    <Text style={{ fontSize: getFontSize(16) }} className='text-white font-normal'>Logout</Text>
+            <View className='flex-1 justify-end'>
+                <TouchableOpacity  onPress={handleUpgradePlan} className='w-full h-14 bg-white flex flex-row items-center justify-center space-x-4'>
+                    <AntDesign name="pluscircleo" size={24} color="black" />
+                    <Text style={{ fontSize: getFontSize(18) }} className='text-black font-normal'>Upgrade Plan</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ paddingBottom: bottom }} className='w-full h-14 bg-black  flex flex-row items-center justify-center space-x-4' onPress={handleLogout}>
+                    <MaterialIcons name="logout" size={24} color="white" />
+                    <Text style={{ fontSize: getFontSize(18) }} className='text-white font-normal'>Logout</Text>
                 </TouchableOpacity>
             </View>
         </DrawerContentScrollView>

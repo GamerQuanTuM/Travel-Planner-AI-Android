@@ -48,7 +48,7 @@ const Register = () => {
                 </View>
                 <View className='flex flex-col w-full gap-y-2'>
                     <Text style={{ fontSize: getFontSize(16) }} className='font-medium text-gray-500 mx-2'>Password</Text>
-                    <TextInput style={{ fontSize: getFontSize(20) }} onChangeText={(password) => setPassword(password)} textContentType='password' className='border w-full h-12 rounded-xl px-5' />
+                    <TextInput secureTextEntry={true} style={{ fontSize: getFontSize(20) }} onChangeText={(password) => setPassword(password)} textContentType='password' className='border w-full h-12 rounded-xl px-5' />
                 </View>
             </View>
             <View className='space-y-5 mt-10'>

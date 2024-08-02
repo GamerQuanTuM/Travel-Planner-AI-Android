@@ -6,6 +6,15 @@ import { isAxiosError } from "axios";
 
 import axiosInstance from "~/lib/axiosInstance";
 
+
+enum Subscription {
+  FREE = "FREE",
+  BASIC = "BASIC",
+  STANDARD = "STANDARD",
+  PREMIUM = "PREMIUM",
+}
+
+
 interface User {
   name: string;
   email: string;
@@ -13,6 +22,7 @@ interface User {
   updatedAt: Date;
   id: string;
   session: string;
+  subscription: Subscription | null
 }
 
 interface AuthContextType {
@@ -62,9 +72,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsLoading(true);
       const { data } = await axiosInstance.post("/auth/login", { email, password });
       setUser(data?.message);
-      console.log(data?.message);
       setIsLoggedIn(true);
-      const jsonValue = JSON.stringify(data.message);
+      const jsonValue = JSON.stringify(data?.message);
       await AsyncStorage.setItem('session', jsonValue);
     } catch (error: any) {
       console.error(error?.response);
@@ -83,9 +92,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setIsLoading(true);
       const { data } = await axiosInstance.post("/auth/register", { email, password, name });
+      const { subscription, ...rest } = data?.message
       setUser(data?.message);
       setIsLoggedIn(true);
-      const jsonValue = JSON.stringify(data.message);
+      const jsonValue = JSON.stringify(data?.message);
       await AsyncStorage.setItem('session', jsonValue);
     } catch (error: any) {
       console.error(error?.response);
@@ -106,6 +116,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const response = await axiosInstance.get("/auth/logout");
       if (response.status === 200) {
         await AsyncStorage.removeItem('session');
+        await AsyncStorage.removeItem('subscription');
         setIsLoading(false);
         setUser(null);
         setIsLoggedIn(false);
